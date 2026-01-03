@@ -62,7 +62,7 @@ app.get('/api/shorturl/:short_url', (req, res) => {
     });
   }
 
-  res.redirect(record.original_url);
+  res.redirect(301,record.original_url);
 });
 
 app.listen(port, function() {
