@@ -86,7 +86,7 @@ app.post('/api/shorturl', (req, res) => {
     else {
       // short = gen_shorturl();
       const all_Data = dataManagement('load data')
-      dict = { original_url: input, short_url: all_Data.length + 1 };
+      dict = { original_url: input, short_url: (all_Data?.length ?? 0) + 1 };
       dataManagement("save data", dict);
       return res.json(dict);
     }
