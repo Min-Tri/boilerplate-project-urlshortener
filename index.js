@@ -84,8 +84,9 @@ app.post('/api/shorturl', (req, res) => {
       return res.json({ error: 'invalid url' });
     }
     else {
-      short = gen_shorturl();
-      dict = { original_url: input, short_url: short };
+      // short = gen_shorturl();
+      const all_Data = dataManagement('load data')
+      dict = { original_url: input, short_url: all_Data.length + 1 };
       dataManagement("save data", dict);
       return res.json(dict);
     }
@@ -103,7 +104,7 @@ app.get('/api/shorturl/:shorturl', (req, res) => {
     res.redirect(data_found.original_url);
   }
   else {
-    res.json({ data: 'No matching data', short: input, existing: shortExist,all_data: all_Data});
+    res.json({ data: 'No matching data', short: input, existing: shortExist, all_data: all_Data });
   }
 });
 
